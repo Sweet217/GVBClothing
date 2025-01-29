@@ -8,7 +8,6 @@
     <div class="container mx-auto flex justify-between items-center px-6">
       <!-- Logo and Title -->
       <div class="flex items-center">
-        <!-- Add class to hide logo on scroll down -->
 
         <a :class="['font-new-rocker text-3xl', isScrolled ? 'text-6xl mt-10' : 'text-3xl']"
           >GBV</a

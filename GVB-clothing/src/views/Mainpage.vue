@@ -1,71 +1,20 @@
 <template>
   <div class="relative mt-20">
     <HeaderComponent />
-    <!-- Text/Image Hovering Over All Sections -->
 
-    <!-- Container for Horizontal Layout -->
-    <div class="flex space-x-4 relative z-20">
-      <!-- Section 1 -->
-      <section class="relative h-96 w-96">
+    <div class="flex flex-wrap justify-center gap-4 mb-8 bg-gray-200 py-4">
+      <section
+        v-for="(images, index) in carouselImages"
+        :key="index"
+        class="relative h-96 w-80 sm:w-64 md:w-72 lg:w-80 xl:w-96 2xl:w-[300px]"
+      >
         <div class="relative w-full h-full overflow-hidden">
-          <!-- Carousel Images -->
           <div
-            v-for="(image, index) in carouselImages1"
-            :key="index"
+            v-for="(image, imageIndex) in images"
+            :key="imageIndex"
             :class="[
               'absolute inset-0 transition-opacity duration-700 ease-in-out',
-              currentSlide1 === index ? 'opacity-100' : 'opacity-0',
-            ]"
-            :style="{ backgroundImage: `url(${image})` }"
-            class="bg-cover bg-center w-full h-full"
-          ></div>
-        </div>
-      </section>
-
-      <!-- Section 2 -->
-      <section class="relative h-96 w-96">
-        <div class="relative w-full h-full overflow-hidden">
-          <!-- Carousel Images -->
-          <div
-            v-for="(image, index) in carouselImages2"
-            :key="index"
-            :class="[
-              'absolute inset-0 transition-opacity duration-700 ease-in-out',
-              currentSlide2 === index ? 'opacity-100' : 'opacity-0',
-            ]"
-            :style="{ backgroundImage: `url(${image})` }"
-            class="bg-cover bg-center w-full h-full"
-          ></div>
-        </div>
-      </section>
-
-      <!-- Section 3 -->
-      <section class="relative h-96 w-96">
-        <div class="relative w-full h-full overflow-hidden">
-          <!-- Carousel Images -->
-          <div
-            v-for="(image, index) in carouselImages3"
-            :key="index"
-            :class="[
-              'absolute inset-0 transition-opacity duration-700 ease-in-out',
-              currentSlide3 === index ? 'opacity-100' : 'opacity-0',
-            ]"
-            :style="{ backgroundImage: `url(${image})` }"
-            class="bg-cover bg-center w-full h-full"
-          ></div>
-        </div>
-      </section>
-
-      <!-- Section 4 -->
-      <section class="relative h-96 w-96">
-        <div class="relative w-full h-full overflow-hidden">
-          <!-- Carousel Images -->
-          <div
-            v-for="(image, index) in carouselImages4"
-            :key="index"
-            :class="[
-              'absolute inset-0 transition-opacity duration-700 ease-in-out',
-              currentSlide4 === index ? 'opacity-100' : 'opacity-0',
+              currentSlide[index] === imageIndex ? 'opacity-100' : 'opacity-0',
             ]"
             :style="{ backgroundImage: `url(${image})` }"
             class="bg-cover bg-center w-full h-full"
@@ -74,108 +23,28 @@
       </section>
     </div>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-10">
-      <!-- Producto 1 -->
+    <!-- Productos -->
+    <div class="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-6 gap-10 p-10">
       <div
         class="max-w-xs rounded overflow-hidden shadow-lg bg-white outline-double outline-slate-800 flex flex-col"
+        v-for="(product, index) in products"
+        :key="index"
       >
         <img
           class="w-full h-64 object-cover"
-          src="../assets/basic-oversize-4.jpg"
-          alt="Clothing Image"
+          :src="product.image"
+          :alt="product.name"
         />
-        <div class="px-6 py-4 flex flex-col flex-grow">
-          <h2 class="font-semibold text-l text-gray-800 truncate">
-            Camisa negra corte oversize 250GSM
-          </h2>
-          <p class="text-gray-600 text-sm mt-2 mb-4 flex-grow">
-            Camisa negra oversize de alta calidad, con cuello que no se deforma, pesada y
-            con estilo. <p>Logo bordado en la parte inferior izquierda</p>
+        <div class="px-4 py-4 flex flex-col flex-grow">
+          <h2 class="font-semibold text-l text-gray-800 truncate">{{ product.name }}</h2>
+          <p class="text-gray-600 text-sm mt-2 mb-4 flex-grow whitespace-nowrap">
+            {{ product.description }}
           </p>
         </div>
-        <div class="px-6 py-4 flex items-center justify-between">
-          <span class="font-bold text-lg text-gray-800">350 MXN</span>
+        <div class="px-4 py-4 flex items-center justify-between">
+          <span class="font-bold text-lg text-gray-800">{{ product.price }} MXN</span>
           <button
-            @click="addToCart"
-            class="border-2 text-black px-4 py-2 rounded hover:border-slate-500 focus:outline-none focus:ring focus:ring-blue-300"
-          >
-            +
-          </button>
-        </div>
-      </div>
-
-      <!-- Producto 2
-      <div
-        class="max-w-xs rounded overflow-hidden shadow-lg bg-white outline-double outline-slate-800 flex flex-col"
-      >
-        <img
-          class="w-full h-64 object-cover"
-          src="../assets/model_ex2.jpg"
-          alt="Clothing Image"
-        />
-        <div class="px-6 py-4 flex flex-col flex-grow">
-          <h2 class="font-semibold text-l text-gray-800 truncate">
-            Camisa Azul OVERSIZE 240GM
-          </h2>
-          <p class="text-gray-600 text-sm mt-2 mb-4 flex-grow">
-            Camisa azul oversize, cómoda y con diseño moderno para cualquier ocasión.
-          </p>
-        </div>
-        <div class="px-6 py-4 flex items-center justify-between">
-          <span class="font-bold text-lg text-gray-800">280 MXN</span>
-          <button
-            @click="addToCart"
-            class="border-2 text-black px-4 py-2 rounded hover:border-slate-500 focus:outline-none focus:ring focus:ring-blue-300"
-          >
-            +
-          </button>
-        </div>
-      </div>
-
-      Producto 3
-      <div
-        class="max-w-xs rounded overflow-hidden shadow-lg bg-white outline-double outline-slate-800 flex flex-col"
-      >
-        <img
-          class="w-full h-64 object-cover"
-          src="../assets/model_ex3.jpg"
-          alt="Clothing Image"
-        />
-        <div class="px-6 py-4 flex flex-col flex-grow">
-          <h2 class="font-semibold text-l text-gray-800 truncate">Camiseta Gris 180GM</h2>
-          <p class="text-gray-600 text-sm mt-2 mb-4 flex-grow">
-            Camiseta gris con material suave y cómodo, ideal para un look casual.
-          </p>
-        </div>
-        <div class="px-6 py-4 flex items-center justify-between">
-          <span class="font-bold text-lg text-gray-800">200 MXN</span>
-          <button
-            @click="addToCart"
-            class="border-2 text-black px-4 py-2 rounded hover:border-slate-500 focus:outline-none focus:ring focus:ring-blue-300"
-          >
-            +
-          </button>
-        </div>
-      </div> -->
-      <div
-        class="max-w-xs rounded overflow-hidden shadow-lg bg-white outline-double outline-slate-800 flex flex-col"
-      >
-        <img
-          class="w-full h-64 object-cover"
-          src="../assets/sweater_ex.jpg"
-          alt="Clothing Image"
-        />
-        <div class="px-6 py-4 flex flex-col flex-grow">
-          <h2 class="font-semibold text-l text-gray-800 truncate">Playera negra corte regular 250GSM</h2>
-          <p class="text-gray-600 text-sm mt-2 mb-4 flex-grow">
-            Camisa negra regularfit de alta calidad, con cuello que no se deforma, pesada y
-            con estilo. <p>Logo bordado en la parte inferior izquierda</p>
-          </p>
-        </div>
-        <div class="px-6 py-4 flex items-center justify-between">
-          <span class="font-bold text-lg text-gray-800">300 MXN</span>
-          <button
-            @click="addToCart"
+            @click="addToCart(product)"
             class="border-2 text-black px-4 py-2 rounded hover:border-slate-500 focus:outline-none focus:ring focus:ring-blue-300"
           >
             +
@@ -184,7 +53,7 @@
       </div>
     </div>
 
-    <FooterComponent></FooterComponent>
+    <FooterComponent />
   </div>
 </template>
 
@@ -205,56 +74,48 @@ export default {
   },
   data() {
     return {
-      carouselImages1: [basic_oversize_2, basic_oversize_3, basic_oversize_5],
-      carouselImages2: [basic_oversize_1, gvb_on_clothing, basic_oversize_2],
-      carouselImages3: [basic_oversize_5, basic_oversize_1, basic_oversize_4],
-      carouselImages4: [basic_oversize_3, gvb_on_clothing, basic_oversize_2],
-
-      currentSlide1: 0,
-      currentSlide2: 0,
-      currentSlide3: 0,
-      currentSlide4: 0,
+      carouselImages: [
+        [basic_oversize_2, basic_oversize_3, basic_oversize_5],
+        [basic_oversize_1, gvb_on_clothing, basic_oversize_2],
+        [basic_oversize_5, basic_oversize_1, basic_oversize_4],
+        [basic_oversize_3, gvb_on_clothing, basic_oversize_2],
+      ],
+      currentSlide: [0, 0, 0, 0],
+      products: [
+        {
+          name: "Camisa negra corte oversize 250GSM",
+          description:
+            "Camisa negra oversize de alta calidad, con cuello que no se deforma, pesada y con estilo. Logo bordado en la parte inferior izquierda.",
+          price: 350,
+          image: basic_oversize_4,
+        },
+        {
+          name: "Playera negra corte regular 250GSM",
+          description:
+            "Camisa negra regularfit de alta calidad, con cuello que no se deforma, pesada y con estilo. Logo bordado en la parte inferior izquierda.",
+          price: 300,
+          image: "",
+        },
+      ],
     };
   },
   methods: {
-    setCurrentSlide1(index) {
-      this.currentSlide1 = index;
+    addToCart(product) {
+      console.log(`Añadido al carrito: ${product.name}`);
     },
-    setCurrentSlide2(index) {
-      this.currentSlide2 = index;
-    },
-    setCurrentSlide3(index) {
-      this.currentSlide3 = index;
-    },
-    setCurrentSlide4(index) {
-      this.currentSlide4 = index;
-    },
-    autoSlide1() {
-      setInterval(() => {
-        this.currentSlide1 = (this.currentSlide1 + 1) % this.carouselImages1.length;
-      }, 5000); // Change every 3 seconds
-    },
-    autoSlide2() {
-      setInterval(() => {
-        this.currentSlide2 = (this.currentSlide2 + 1) % this.carouselImages2.length;
-      }, 5500);
-    },
-    autoSlide3() {
-      setInterval(() => {
-        this.currentSlide3 = (this.currentSlide3 + 1) % this.carouselImages3.length;
-      }, 6000);
-    },
-    autoSlide4() {
-      setInterval(() => {
-        this.currentSlide4 = (this.currentSlide4 + 1) % this.carouselImages4.length;
-      }, 6500);
+    startCarousel(index) {
+      const updateSlide = () => {
+        this.currentSlide[index] =
+          (this.currentSlide[index] + 1) % this.carouselImages[index].length;
+        setTimeout(updateSlide, 5000); // Cambia cada 5 segundos
+      };
+      setTimeout(updateSlide, 5000);
     },
   },
   mounted() {
-    this.autoSlide1();
-    this.autoSlide2();
-    this.autoSlide3();
-    this.autoSlide4();
+    this.carouselImages.forEach((_, index) => {
+      this.startCarousel(index);
+    });
   },
 };
 </script>
