@@ -79,13 +79,11 @@ export default {
   },
   methods: {
     handleScroll() {
-      // Check if the user is scrolling down or up
       const currentScrollY = window.scrollY;
-      this.isScrollingDown = currentScrollY > this.lastScrollY; // If scrolled down, hide logo
+      this.isScrollingDown = currentScrollY > this.lastScrollY; 
       this.lastScrollY = currentScrollY;
 
-      // Handle scroll position for background color change
-      this.isScrolled = currentScrollY > 50; // Adjust scroll threshold as needed
+      this.isScrolled = currentScrollY > 50; 
     },
   },
 };
@@ -93,7 +91,7 @@ export default {
 
 <style scoped>
 header {
-  z-index: 50; /* Ensures the header is above all other elements */
+  z-index: 50; 
   transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease,
     opacity 0.3s ease;
 }
@@ -103,10 +101,10 @@ header.bg-transparent {
 }
 
 body {
-  margin-top: 80px; /* Add space at the top to account for the fixed header height */
+  margin-top: 80px; 
 }
 
-/* Transition opacity for logo */
+
 img {
   transition: opacity 0.3s ease;
 }

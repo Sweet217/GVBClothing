@@ -107,7 +107,7 @@ export default {
       const updateSlide = () => {
         this.currentSlide[index] =
           (this.currentSlide[index] + 1) % this.carouselImages[index].length;
-        setTimeout(updateSlide, 5000); // Cambia cada 5 segundos
+        setTimeout(updateSlide, 5000); 
       };
       setTimeout(updateSlide, 5000);
     },
