@@ -13,7 +13,7 @@
           <div>
             <span class="material-icons">phone_iphone</span>
             <a
-              href="https://www.instagram.com/yourhandle"
+              href="https://www.instagram.com/gvb_clothing/"
               target="_blank"
               class="text-xl font-bold text-white hover:underline"
             >
