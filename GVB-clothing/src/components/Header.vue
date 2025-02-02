@@ -8,8 +8,11 @@
     <div class="container mx-auto flex justify-between items-center px-6">
       <!-- Logo and Title -->
       <div class="flex items-center">
-
-        <a :class="['font-new-rocker text-3xl', isScrolled ? 'text-6xl mt-10' : 'text-3xl']"
+        <a
+          :class="[
+            'font-new-rocker text-3xl',
+            isScrolled ? 'text-6xl mt-10' : 'text-3xl',
+          ]"
           >GBV</a
         >
         <a
@@ -41,13 +44,13 @@
           >
             Locker
           </router-link>
-          <a
-            href="#"
+          <router-link
+            to="/contact"
             class="font-super-funky hover:text-purple-100"
             :class="{ 'opacity-0': isScrollingDown }"
           >
             Contact
-          </a>
+          </router-link>
         </div>
 
         <!-- Cart Icon -->
@@ -80,10 +83,10 @@ export default {
   methods: {
     handleScroll() {
       const currentScrollY = window.scrollY;
-      this.isScrollingDown = currentScrollY > this.lastScrollY; 
+      this.isScrollingDown = currentScrollY > this.lastScrollY;
       this.lastScrollY = currentScrollY;
 
-      this.isScrolled = currentScrollY > 50; 
+      this.isScrolled = currentScrollY > 50;
     },
   },
 };
@@ -91,7 +94,7 @@ export default {
 
 <style scoped>
 header {
-  z-index: 50; 
+  z-index: 50;
   transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease,
     opacity 0.3s ease;
 }
@@ -101,9 +104,8 @@ header.bg-transparent {
 }
 
 body {
-  margin-top: 80px; 
+  margin-top: 80px;
 }
-
 
 img {
   transition: opacity 0.3s ease;

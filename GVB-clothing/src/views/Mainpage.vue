@@ -1,7 +1,8 @@
 <template>
-  <div class="relative mt-20">
+  <div class="relative" style="margin-top: 65px">
     <HeaderComponent />
 
+    <!-- Carousel -->
     <div class="flex flex-wrap justify-center gap-4 mb-8 bg-gray-200 py-4">
       <section
         v-for="(images, index) in carouselImages"
@@ -23,18 +24,14 @@
       </section>
     </div>
 
-    <!-- Productos -->
+    <!-- Products Grid -->
     <div class="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-6 gap-10 p-10">
       <div
         class="max-w-xs rounded overflow-hidden shadow-lg bg-white outline-double outline-slate-800 flex flex-col"
         v-for="(product, index) in products"
         :key="index"
       >
-        <img
-          class="w-full h-64 object-cover"
-          :src="product.image"
-          :alt="product.name"
-        />
+        <img class="w-full h-64 object-cover" :src="product.image" :alt="product.name" />
         <div class="px-4 py-4 flex flex-col flex-grow">
           <h2 class="font-semibold text-l text-gray-800 truncate">{{ product.name }}</h2>
           <p class="text-gray-600 text-sm mt-2 mb-4 flex-grow whitespace-nowrap">
@@ -44,11 +41,65 @@
         <div class="px-4 py-4 flex items-center justify-between">
           <span class="font-bold text-lg text-gray-800">{{ product.price }} MXN</span>
           <button
-            @click="addToCart(product)"
+            @click="openModal(product)"
             class="border-2 text-black px-4 py-2 rounded hover:border-slate-500 focus:outline-none focus:ring focus:ring-blue-300"
           >
             +
           </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal -->
+    <div
+      v-if="isModalOpen"
+      class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center transition-opacity duration-300 ease-in-out"
+    >
+      <div
+        class="bg-white p-8 rounded-lg shadow-xl w-full max-w-4xl relative transform scale-95 transition-all duration-500 ease-in-out"
+      >
+        <button
+          @click="closeModal"
+          class="absolute top-2 right-2 text-2xl text-gray-800 hover:text-red-500"
+        >
+          ×
+        </button>
+
+        <div class="flex">
+          <!-- Main Image -->
+          <div
+            class="flex-shrink-0 w-1/2 h-96 bg-cover bg-center rounded-lg"
+            :style="{ backgroundImage: `url(${selectedImage})` }"
+          ></div>
+
+          <!-- Product Description -->
+          <div class="ml-8 w-1/2 flex flex-col">
+            <h2 class="text-3xl font-semibold text-gray-800">{{ modalProduct.name }}</h2>
+            <p class="text-gray-600 text-lg mt-2 mb-4 flex-grow">
+              {{ modalProduct.description }}
+            </p>
+
+            <!-- Product Images -->
+            <div class="mt-4">
+              <h3 class="text-xl font-semibold text-gray-800">Imágenes:</h3>
+              <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 mt-2">
+                <div
+                  v-for="(image, index) in modalImages"
+                  :key="index"
+                  class="w-16 h-16 bg-cover bg-center rounded-lg cursor-pointer"
+                  :style="{ backgroundImage: `url(${image})` }"
+                  @click="updateMainImage(image)"
+                ></div>
+              </div>
+            </div>
+
+            <!-- Price -->
+            <div class="mt-4 flex items-center justify-between">
+              <span class="font-bold text-2xl text-gray-800">
+                {{ modalProduct.price }} MXN</span
+              >
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -76,9 +127,9 @@ export default {
     return {
       carouselImages: [
         [basic_oversize_2, basic_oversize_3, basic_oversize_5],
-        [basic_oversize_1, gvb_on_clothing, basic_oversize_2],
-        [basic_oversize_5, basic_oversize_1, basic_oversize_4],
-        [basic_oversize_3, gvb_on_clothing, basic_oversize_2],
+        [basic_oversize_1, basic_oversize_5, basic_oversize_4],
+        [basic_oversize_5, basic_oversize_1, basic_oversize_3],
+        [basic_oversize_4, gvb_on_clothing, basic_oversize_2],
       ],
       currentSlide: [0, 0, 0, 0],
       products: [
@@ -88,6 +139,7 @@ export default {
             "Camisa negra oversize de alta calidad, con cuello que no se deforma, pesada y con estilo. Logo bordado en la parte inferior izquierda.",
           price: 350,
           image: basic_oversize_4,
+          images: [basic_oversize_1, basic_oversize_2, basic_oversize_3], // Product images
         },
         {
           name: "Playera negra corte regular 250GSM",
@@ -95,8 +147,13 @@ export default {
             "Camisa negra regularfit de alta calidad, con cuello que no se deforma, pesada y con estilo. Logo bordado en la parte inferior izquierda.",
           price: 300,
           image: "",
+          images: [basic_oversize_4, basic_oversize_5, gvb_on_clothing], // Product images
         },
       ],
+      isModalOpen: false,
+      modalProduct: {},
+      modalImages: [],
+      selectedImage: "", // New data property to manage the selected image in the modal
     };
   },
   methods: {
@@ -107,9 +164,22 @@ export default {
       const updateSlide = () => {
         this.currentSlide[index] =
           (this.currentSlide[index] + 1) % this.carouselImages[index].length;
-        setTimeout(updateSlide, 5000); 
+        setTimeout(updateSlide, 5000);
       };
       setTimeout(updateSlide, 5000);
+    },
+    openModal(product) {
+      this.modalProduct = product;
+      this.modalImages = product.images;
+      this.selectedImage = product.image; // Set the selected image for the modal
+      this.isModalOpen = true;
+    },
+    closeModal() {
+      this.isModalOpen = false;
+    },
+    // Update the main image when clicking on a thumbnail
+    updateMainImage(image) {
+      this.selectedImage = image;
     },
   },
   mounted() {
