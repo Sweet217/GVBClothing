@@ -26,7 +26,7 @@
       </div>
 
       <!-- Hamburger Menu for Mobile -->
-      <button @click="toggleMenu" class="lg:hidden text-white">
+      <button @click="toggleMenu" class="lg:hidden text-white" :class="{ 'opacity-0': isScrollingDown }">
         <span class="material-icons">menu</span>
       </button>
 
