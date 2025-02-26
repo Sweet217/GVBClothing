@@ -13,7 +13,7 @@
             'font-new-rocker text-3xl',
             isScrolled ? 'text-6xl mt-10' : 'text-3xl',
           ]"
-          >GBV</a
+          >GVB</a
         >
         <a
           :class="[
