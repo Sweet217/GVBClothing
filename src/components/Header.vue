@@ -25,11 +25,21 @@
         >
       </div>
 
+      <!-- Hamburger Menu for Mobile -->
+      <button @click="toggleMenu" class="lg:hidden text-white">
+        <span class="material-icons">menu</span>
+      </button>
+
       <!-- Navigation Links -->
-      <nav class="flex items-center w-full justify-between ml-4">
+      <nav
+        :class="[
+          'lg:flex items-center w-full justify-between ml-4',
+          isMenuOpen ? 'block' : 'hidden',
+          'absolute top-full left-0 w-full bg-black lg:relative lg:bg-transparent',
+        ]"
+      >
         <!-- Centered Links -->
-        <div class="flex justify-center flex-1 space-x-10 mr-20">
-          <!-- Add classes to hide these links on scroll down -->
+        <div class="flex flex-col lg:flex-row justify-center flex-1 space-y-4 lg:space-y-0 lg:space-x-10 mr-20 text-center lg:text-left">
           <router-link
             to="/"
             class="font-super-funky hover:text-purple-100"
@@ -72,6 +82,7 @@ export default {
       lastScrollY: 0,
       isScrollingDown: false,
       isScrolled: false,
+      isMenuOpen: false,
     };
   },
   mounted() {
@@ -85,8 +96,14 @@ export default {
       const currentScrollY = window.scrollY;
       this.isScrollingDown = currentScrollY > this.lastScrollY;
       this.lastScrollY = currentScrollY;
-
       this.isScrolled = currentScrollY > 50;
+      
+      if (this.isScrollingDown) {
+        this.isMenuOpen = false;
+      }
+    },
+    toggleMenu() {
+      this.isMenuOpen = !this.isMenuOpen;
     },
   },
 };
@@ -101,6 +118,7 @@ header {
 
 header.bg-transparent {
   box-shadow: none;
+  -webkit-text-stroke: 2px rgb(0, 0, 0); /* Adjust thickness and color */
 }
 
 body {
@@ -111,3 +129,4 @@ img {
   transition: opacity 0.3s ease;
 }
 </style>
+
