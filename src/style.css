@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+    font-family: 'Super Funky';
+    src: url('../assets/fonts/SuperFunky-lgmWw.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
