@@ -62,7 +62,6 @@
           @click="closeModal"
           class="absolute top-2 right-2 text-2xl text-gray-800 hover:text-red-500"
         >
-          ×
         </button>
 
         <div class="flex">
@@ -144,7 +143,7 @@ export default {
       currentSlide: [0, 0, 0, 0],
       products: [
         {
-          name: "Camisa negra corte oversize 250GSM",
+          name: "Playera corte oversize 250GSM",
           description:
             "Camisa negra oversize de alta calidad, con cuello que no se deforma, pesada y con estilo. Logo bordado en la parte inferior izquierda.",
           price: 350,
@@ -158,7 +157,7 @@ export default {
           ], // Product images
         },
         {
-          name: "Playera negra corte regular 250GSM",
+          name: "Playera corte regular 250GSM",
           description:
             "Camisa negra regularfit de alta calidad, con cuello que no se deforma, pesada y con estilo. Logo bordado en la parte inferior izquierda.",
           price: 300,
