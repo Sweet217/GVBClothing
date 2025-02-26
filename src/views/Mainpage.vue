@@ -31,7 +31,7 @@
         v-for="(product, index) in products"
         :key="index"
       >
-        <img class="w-full h-64 object-cover" :src="product.image" :alt="product.name" />
+        <img class="object-cover" style="size:64px":src="product.image" :alt="product.name" />
         <div class="px-4 py-4 flex flex-col flex-grow">
           <h2 class="font-semibold text-l text-gray-800 truncate">{{ product.name }}</h2>
           <p class="text-gray-600 text-sm mt-2 mb-4 flex-grow whitespace-nowrap">
