@@ -3,8 +3,11 @@
 @tailwind utilities;
 
 @font-face {
-    font-family: 'Super Funky';
-    src: url('../assets/fonts/SuperFunky-lgmWw.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-  }
+  font-family: 'Super Funky';
+  src: url('/fonts/NewRocker-Regular.otf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Super Funky';
+  src: url('/fonts/SuperFunky-lgmWw.ttf') format('truetype');
+}

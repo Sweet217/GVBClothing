@@ -1,7 +1,7 @@
 <template>
   <header
     :class="[
-      'py-4 fixed top-0 left-0 w-full transition-all duration-300 z-50',
+      'py-4 fixed top-0 left-0 w-full z-50',
       isScrolled ? 'bg-transparent text-white shadow-lg' : 'bg-black text-white',
     ]"
   >
@@ -10,7 +10,7 @@
       <div class="flex items-center">
         <a
           :class="[
-            'font-new-rocker text-3xl',
+            'font-new-rocker transition-[font-size,margin] duration-250 ease-in-out text-3xl',
             isScrolled ? 'text-6xl mt-10' : 'text-3xl',
           ]"
           >GVB</a
@@ -18,7 +18,7 @@
         <a
           :class="[
             'ml-1 font-new-rocker text-1xl',
-            isScrolled ? 'text-4xl mt-10' : 'text-1xl',
+            isScrolled ? 'opacity-0' : 'opacity-100',
           ]"
         >
           Clothing</a
@@ -112,13 +112,13 @@ export default {
 <style scoped>
 header {
   z-index: 50;
-  transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease,
-    opacity 0.3s ease;
+  transition: color 0.3s ease, box-shadow 0.3s ease;
 }
 
 header.bg-transparent {
   box-shadow: none;
   -webkit-text-stroke: 2px rgb(0, 0, 0); /* Adjust thickness and color */
+  margin-top: -20px;
 }
 
 body {
