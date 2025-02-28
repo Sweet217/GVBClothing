@@ -5,7 +5,7 @@
     <!-- Carousel -->
     <div class="flex flex-wrap justify-center gap-4 mb-8 bg-gray-200 py-4">
       <section
-        v-for="(images, index) in carouselImages"
+        v-for="(images, index) in filteredCarouselImages"
         :key="index"
         class="relative h-96 w-80 sm:w-64 md:w-72 lg:w-80 xl:w-96 2xl:w-[300px]"
       >
@@ -31,10 +31,16 @@
         v-for="(product, index) in products"
         :key="index"
       >
-        <img class="object-cover" style="height: 310px":src="product.image" :alt="product.name" />
+      <img
+        class="object-contain sm:h-[300px] lg:h-[220px] xl:h-[180px] w-full aspect-[3/4]"
+        :src="product.image"
+        :alt="product.name"
+      />
         <div class="px-4 py-4 flex flex-col flex-grow">
-          <h2 class="font-semibold text-l text-gray-800 truncate">{{ product.name }}</h2>
-          <p class="text-gray-600 text-sm mt-2 mb-4 flex-grow whitespace-nowrap">
+          <h2 class="font-semibold text-l text-gray-800 truncate">
+            {{ product.name }}
+          </h2>
+          <p class="text-gray-600 text-sm mt-2 mb-4 flex-grow">
             {{ product.description }}
           </p>
         </div>
@@ -46,67 +52,6 @@
           >
             +
           </button>
-        </div>
-      </div>
-    </div>
-
-    <!-- Modal -->
-    <div
-      v-if="isModalOpen"
-      class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center transition-opacity duration-300 ease-in-out"
-    >
-      <div
-        class="bg-white p-8 rounded-lg shadow-xl w-full max-w-4xl relative transform scale-95 transition-all duration-500 ease-in-out"
-      >
-        <button
-          @click="closeModal"
-          class="absolute top-2 right-2 text-2xl text-gray-800 hover:text-red-500"
-        >
-        </button>
-
-        <div class="flex">
-          <!-- Main Image -->
-          <div
-            class="flex-shrink-0 w-1/2 h-96 bg-cover bg-center rounded-lg"
-            :style="{ backgroundImage: `url(${selectedImage})` }"
-          ></div>
-
-          <!-- Product Description -->
-          <div class="ml-8 w-1/2 flex flex-col">
-            <h2 class="text-3xl font-semibold text-gray-800">{{ modalProduct.name }}</h2>
-            <p class="text-gray-600 text-lg mt-2 mb-4 flex-grow">
-              {{ modalProduct.description }}
-            </p>
-
-            <!-- Product Images -->
-            <div class="mt-4">
-              <h3 class="text-xl font-semibold text-gray-800">Imágenes:</h3>
-              <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 mt-2">
-                <div
-                  v-for="(image, index) in modalImages"
-                  :key="index"
-                  class="w-16 h-16 bg-cover bg-center rounded-lg cursor-pointer"
-                  :style="{ backgroundImage: `url(${image})` }"
-                  @click="updateMainImage(image)"
-                ></div>
-              </div>
-            </div>
-
-            <!-- Price -->
-            <div class="mt-4 flex items-center justify-between">
-              <span class="font-bold text-2xl text-gray-800">
-                {{ modalProduct.price }} MXN</span
-              >
-              <a
-                href="https://wa.me/523125953394"
-                target="_blank"
-                class="flex items-center border-2 border-green-500 text-green-500 px-4 py-2 rounded hover:bg-green-500 hover:text-white transition"
-              >
-                <span class="material-icons mr-2">chat</span>
-                WhatsApp
-              </a>
-            </div>
-          </div>
         </div>
       </div>
     </div>
@@ -141,6 +86,7 @@ export default {
         [basic_oversize_4, gvb_on_clothing, basic_oversize_2],
       ],
       currentSlide: [0, 0, 0, 0],
+      windowWidth: window.innerWidth, // Track screen width
       products: [
         {
           name: "Playera corte oversize 250GSM",
@@ -154,7 +100,7 @@ export default {
             basic_oversize_2,
             basic_oversize_3,
             colores,
-          ], // Product images
+          ],
         },
         {
           name: "Playera corte regular 250GSM",
@@ -168,18 +114,35 @@ export default {
             basic_oversize_2,
             basic_oversize_3,
             colores,
-          ], // Product images // Product images
+          ],
         },
       ],
       isModalOpen: false,
       modalProduct: {},
       modalImages: [],
-      selectedImage: "", // New data property to manage the selected image in the modal
+      selectedImage: "",
     };
   },
+  computed: {
+    filteredCarouselImages() {
+      if (this.windowWidth >= 1538) return this.carouselImages; // lg+ → 4 images
+      if (this.windowWidth >= 900) return this.carouselImages.slice(0, 3); // md → 3 images
+      if (this.windowWidth >= 640) return this.carouselImages.slice(0, 2); // sm → 2 images
+      return this.carouselImages.slice(0, 1); // xs → 1 image
+    },
+  },
+  mounted() {
+    window.addEventListener("resize", this.updateWindowWidth);
+    this.carouselImages.forEach((_, index) => {
+      this.startCarousel(index);
+    });
+  },
+  beforeUnmount() {
+    window.removeEventListener("resize", this.updateWindowWidth);
+  },
   methods: {
-    addToCart(product) {
-      console.log(`Añadido al carrito: ${product.name}`);
+    updateWindowWidth() {
+      this.windowWidth = window.innerWidth;
     },
     startCarousel(index) {
       const updateSlide = () => {
@@ -192,21 +155,15 @@ export default {
     openModal(product) {
       this.modalProduct = product;
       this.modalImages = product.images;
-      this.selectedImage = product.image; // Set the selected image for the modal
+      this.selectedImage = product.image;
       this.isModalOpen = true;
     },
     closeModal() {
       this.isModalOpen = false;
     },
-    // Update the main image when clicking on a thumbnail
     updateMainImage(image) {
       this.selectedImage = image;
     },
-  },
-  mounted() {
-    this.carouselImages.forEach((_, index) => {
-      this.startCarousel(index);
-    });
   },
 };
 </script>
