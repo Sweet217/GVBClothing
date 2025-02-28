@@ -3,8 +3,8 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: 'Super Funky';
-  src: url('/fonts/NewRocker-Regular.otf') format('truetype');
+  font-family: 'NewRocker';
+  src: url('/fonts/NewRocker-Regular.otf') format('opentype');
 }
 
 @font-face {
