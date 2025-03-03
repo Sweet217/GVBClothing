@@ -56,6 +56,68 @@
       </div>
     </div>
 
+    <!-- Modal -->
+    <div
+      v-if="isModalOpen"
+      class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center transition-opacity duration-300 ease-in-out"
+    >
+      <div
+        class="bg-white p-8 rounded-lg shadow-xl w-full max-w-4xl relative transform scale-95 transition-all duration-500 ease-in-out"
+      >
+        <button
+          @click="closeModal"
+          class="absolute top-2 right-2 text-2xl text-gray-800 hover:text-red-500"
+        >
+          ×
+        </button>
+
+        <div class="flex">
+          <!-- Main Image -->
+          <div
+            class="flex-shrink-0 w-1/2 h-96 bg-cover bg-center rounded-lg"
+            :style="{ backgroundImage: `url(${selectedImage})` }"
+          ></div>
+
+          <!-- Product Description -->
+          <div class="ml-8 w-1/2 flex flex-col">
+            <h2 class="text-3xl font-semibold text-gray-800">{{ modalProduct.name }}</h2>
+            <p class="text-gray-600 text-lg mt-2 mb-4 flex-grow">
+              {{ modalProduct.description }}
+            </p>
+
+            <!-- Product Images -->
+            <div class="mt-4">
+              <h3 class="text-xl font-semibold text-gray-800">Imágenes:</h3>
+              <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 mt-2">
+                <div
+                  v-for="(image, index) in modalImages"
+                  :key="index"
+                  class="w-16 h-16 bg-cover bg-center rounded-lg cursor-pointer"
+                  :style="{ backgroundImage: `url(${image})` }"
+                  @click="updateMainImage(image)"
+                ></div>
+              </div>
+            </div>
+
+            <!-- Price -->
+            <div class="mt-4 flex items-center justify-between">
+              <span class="font-bold text-2xl text-gray-800">
+                {{ modalProduct.price }} MXN</span
+              >
+              <a
+                href="https://wa.me/523125953394"
+                target="_blank"
+                class="flex items-center border-2 border-green-500 text-green-500 px-4 py-2 rounded hover:bg-green-500 hover:text-white transition"
+              >
+                <span class="material-icons mr-2">chat</span>
+                WhatsApp
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <FooterComponent />
   </div>
 </template>
@@ -153,6 +215,7 @@ export default {
       setTimeout(updateSlide, 5000);
     },
     openModal(product) {
+      console.log("si jala")
       this.modalProduct = product;
       this.modalImages = product.images;
       this.selectedImage = product.image;
