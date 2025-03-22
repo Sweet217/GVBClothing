@@ -31,11 +31,11 @@
         v-for="(product, index) in products"
         :key="index"
       >
-      <img
-        class="object-contain sm:h-[300px] lg:h-[220px] xl:h-[180px] w-full aspect-[3/4]"
-        :src="product.image"
-        :alt="product.name"
-      />
+        <img
+          class="object-contain sm:h-[300px] lg:h-[220px] xl:h-[180px] w-full aspect-[3/4]"
+          :src="product.image"
+          :alt="product.name"
+        />
         <div class="px-4 py-4 flex flex-col flex-grow">
           <h2 class="font-semibold text-l text-gray-800 truncate">
             {{ product.name }}
@@ -131,6 +131,17 @@ import basic_oversize_3 from "../assets/basic-oversize-3.jpg";
 import basic_oversize_4 from "../assets/basic-oversize-4.jpg";
 import basic_oversize_5 from "../assets/basic-oversize-5.jpg";
 import gvb_on_clothing from "../assets/GVB on clothing.jpg";
+import arena_back from "../assets/Arena/Arena Back.png";
+import arena_side from "../assets/Arena/Arena Side.png";
+import cafe_back from "../assets/Cafe/Cafe Back.png";
+import cafe_side from "../assets/Cafe/Cafe Side.png";
+import cafe_front from "../assets/Cafe/Cafe Front.jpg";
+import gris_oxford_front from "../assets/Gris Oxford/Gris Oxford Front.jpg";
+import gris_oxford_side from "../assets/Gris Oxford/Gris Oxford Side.png";
+import gris_oxford_croptop_front from "../assets/Gris Oxford/Gris Oxford CropTop Front.png";
+import gris_oxford_croptop_side from "../assets/Gris Oxford/Gris Oxford CropTop Side.png";
+import rosa_palo_back from "../assets/Rosa Palo/Rosa Palo Back.png";
+import rosa_palo_side from "../assets/Rosa Palo/Rosa Palo Side.png";
 import colores from "../assets/colores.jpg";
 import normal_fit from "../assets/normal_fi-rbg.png";
 
@@ -178,6 +189,46 @@ export default {
             colores,
           ],
         },
+        {
+          name: "Playera Arena Oversize 240GSM",
+          description:
+            "Camisa corte oversize, suave, fresca y de la más alta calidad, con cuello que no se deforma, pesada y con estilo. Logo bordado en la parte inferior izquierda.",
+          price: 300,
+          image: arena_back,
+          images: [arena_back, arena_side],
+        },
+        {
+          name: "Playera Café Oversize 240GSM",
+          description:
+            "Camisa corte oversize, suave, fresca y de la más alta calidad, con cuello que no se deforma, pesada y con estilo. Logo bordado en la parte inferior izquierda.",
+          price: 300,
+          image: cafe_front,
+          images: [cafe_back, cafe_side, cafe_front],
+        },
+        {
+          name: "Playera Gris Oxford Oversize 240GSM",
+          description:
+            "Camisa corte oversize, suave, fresca y de la más alta calidad, con cuello que no se deforma, pesada y con estilo. Logo bordado en la parte inferior izquierda.",
+          price: 300,
+          image: gris_oxford_front,
+          images: [gris_oxford_front, gris_oxford_side],
+        },
+        {
+          name: "Crop Top Gris Oxford Oversize 240GSM",
+          description:
+            "Crop top oversize, suave, fresco y de la más alta calidad, con cuello que no se deforma, pesado y con estilo. Logo bordado en la parte inferior izquierda.",
+          price: 300,
+          image: gris_oxford_croptop_front,
+          images: [gris_oxford_croptop_front, gris_oxford_croptop_side],
+        },
+        {
+          name: "Playera Rosa Palo Oversize 240GSM",
+          description:
+            "Camisa corte oversize, suave, fresca y de la más alta calidad, con cuello que no se deforma, pesada y con estilo. Logo bordado en la parte inferior izquierda.",
+          price: 300,
+          image: rosa_palo_back,
+          images: [rosa_palo_back, rosa_palo_side],
+        },
       ],
       isModalOpen: false,
       modalProduct: {},
@@ -215,7 +266,6 @@ export default {
       setTimeout(updateSlide, 5000);
     },
     openModal(product) {
-      console.log("si jala")
       this.modalProduct = product;
       this.modalImages = product.images;
       this.selectedImage = product.image;
