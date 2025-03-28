@@ -1,6 +1,6 @@
 <template>
   <div class="relative" style="margin-top: 65px">
-    <!--<HeaderComponent />
+    <HeaderComponent />
 
     <!-- Carousel -->
     <div class="flex flex-wrap justify-center gap-4 mb-8 bg-gray-200 py-4">
