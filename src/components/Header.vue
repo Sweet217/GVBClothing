@@ -26,7 +26,11 @@
       </div>
 
       <!-- Hamburger Menu for Mobile -->
-      <button @click="toggleMenu" class="lg:hidden text-white" :class="{ 'opacity-0': isScrollingDown }">
+      <button
+        @click="toggleMenu"
+        class="lg:hidden text-white"
+        :class="{ 'opacity-0': isScrollingDown }"
+      >
         <span class="material-icons">menu</span>
       </button>
 
@@ -39,20 +43,15 @@
         ]"
       >
         <!-- Centered Links -->
-        <div class="flex flex-col lg:flex-row justify-center flex-1 space-y-4 lg:space-y-0 lg:space-x-10 mr-20 text-center lg:text-left">
+        <div
+          class="flex flex-col lg:flex-row justify-center flex-1 space-y-4 lg:space-y-0 lg:space-x-10 mr-20 text-center lg:text-left"
+        >
           <router-link
             to="/"
             class="font-super-funky hover:text-purple-100"
             :class="{ 'opacity-0': isScrollingDown }"
           >
             Home
-          </router-link>
-          <router-link
-            to="/locker"
-            class="font-super-funky hover:text-purple-100"
-            :class="{ 'opacity-0': isScrollingDown }"
-          >
-            Locker
           </router-link>
           <router-link
             to="/contact"
@@ -97,7 +96,7 @@ export default {
       this.isScrollingDown = currentScrollY > this.lastScrollY;
       this.lastScrollY = currentScrollY;
       this.isScrolled = currentScrollY > 50;
-      
+
       if (this.isScrollingDown) {
         this.isMenuOpen = false;
       }
@@ -129,4 +128,3 @@ img {
   transition: opacity 0.3s ease;
 }
 </style>
-
