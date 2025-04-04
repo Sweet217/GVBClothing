@@ -2,56 +2,78 @@
   <div class="relative" style="margin-top: 65px">
     <HeaderComponent v-if="!isModalOpen" />
 
-    <!-- Carousel -->
-    <div class="flex flex-wrap justify-center gap-4 mb-8 bg-gray-200 py-4">
-      <section
-        v-for="(images, index) in filteredCarouselImages"
-        :key="index"
-        class="relative h-96 w-80 sm:w-64 md:w-72 lg:w-80 xl:w-96 2xl:w-[300px]"
-      >
-        <div class="relative w-full h-full overflow-hidden">
-          <div
-            v-for="(image, imageIndex) in images"
-            :key="imageIndex"
-            :class="[
-              'absolute inset-0 transition-opacity duration-700 ease-in-out',
-              currentSlide[index] === imageIndex ? 'opacity-100' : 'opacity-0',
-            ]"
-            :style="{ backgroundImage: `url(${image})` }"
-            class="bg-cover bg-center w-full h-full"
-          ></div>
-        </div>
-      </section>
-    </div>
-
-    <!-- Products Grid -->
-    <div class="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-6 gap-10 p-10">
+    <!-- Main Container -->
+    <div class="bg-gray-200 py-10 px-10">
+      <!-- Carousel -->
+      <div class="flex flex-wrap justify-center gap-6 mb-8">
+        <section
+          v-for="(images, index) in filteredCarouselImages"
+          :key="index"
+          class="relative h-96 w-full sm:w-64 md:w-72 lg:w-80 xl:w-96 2xl:w-[300px]"
+        >
+          <div class="relative w-full h-full overflow-hidden">
+            <div
+              v-for="(image, imageIndex) in images"
+              :key="imageIndex"
+              :class="[
+                'absolute inset-0 transition-opacity duration-700 ease-in-out',
+                currentSlide[index] === imageIndex ? 'opacity-100' : 'opacity-0',
+              ]"
+              :style="{ backgroundImage: `url(${image})` }"
+              class="bg-cover bg-center w-full h-full"
+            ></div>
+          </div>
+        </section>
+      </div>
+      <!--Slogan -->
       <div
-        class="max-w-xs rounded overflow-hidden shadow-lg bg-white outline-double outline-slate-800 flex flex-col"
-        v-for="(product, index) in products"
-        :key="index"
+        class="ml-1 font-new-rocker text-4xl text-center text-white mb-5"
+        style="box-shadow: none; -webkit-text-stroke: 1.5px rgb(0, 0, 0)"
       >
-        <img
-          class="object-contain sm:h-[300px] lg:h-[220px] xl:h-[180px] w-full aspect-[3/4]"
-          :src="product.image"
-          :alt="product.name"
-        />
-        <div class="px-4 py-4 flex flex-col flex-grow">
-          <h2 class="font-semibold text-l text-gray-800 truncate">
-            {{ product.name }}
-          </h2>
-          <p class="text-gray-600 text-sm mt-2 mb-4 flex-grow">
-            {{ product.description }}
-          </p>
-        </div>
-        <div class="px-4 py-4 flex items-center justify-between">
-          <span class="font-bold text-lg text-gray-800">{{ product.price }} MXN</span>
-          <button
-            @click="openModal(product)"
-            class="border-2 text-black px-4 py-2 rounded hover:border-slate-500 focus:outline-none focus:ring focus:ring-blue-300"
-          >
-            +
-          </button>
+        <a>GVB Clothing – Estilo, Calidad y Comodidad 100% Mexicana.</a>
+      </div>
+
+      <div
+        class="ml-1 font-new-rocker text-2xl text-center text-white ml-20 mr-20 mb-10"
+        style="box-shadow: none; -webkit-text-stroke: 1px rgb(0, 0, 0)"
+      >
+        <a
+          >GVB Clothing es una marca de ropa 100% mexicana que combina estilo, calidad y
+          comodidad en cada prenda. Nos inspiramos en la identidad y creatividad de México
+          para ofrecer diseños únicos con materiales de calidad premium. Enviamos a toda
+          la República, asegurando que cada cliente reciba lo mejor en moda urbana y
+          casual.</a
+        >
+      </div>
+      <!-- Products Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-5 gap-10 mr-20 ml-20">
+        <div
+          class="max-w-xs rounded overflow-hidden shadow-lg bg-white outline-double outline-slate-800 flex flex-col"
+          v-for="(product, index) in products"
+          :key="index"
+        >
+          <img
+            class="object-contain sm:h-[300px] lg:h-[220px] xl:h-[180px] w-full aspect-[3/4]"
+            :src="product.image"
+            :alt="product.name"
+          />
+          <div class="px-4 py-4 flex flex-col flex-grow">
+            <h2 class="font-semibold text-l text-gray-800 truncate">
+              {{ product.name }}
+            </h2>
+            <p class="text-gray-600 text-sm mt-2 mb-4 flex-grow">
+              {{ product.description }}
+            </p>
+          </div>
+          <div class="px-4 py-4 flex items-center justify-between">
+            <span class="font-bold text-lg text-gray-800">{{ product.price }} MXN</span>
+            <button
+              @click="openModal(product)"
+              class="border-2 text-black px-4 py-2 rounded hover:border-slate-500 focus:outline-none focus:ring focus:ring-blue-300"
+            >
+              +
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -217,7 +239,7 @@ export default {
           name: "Crop Top Gris Oxford Oversize 240GSM",
           description:
             "Crop top oversize, suave, fresco y de la más alta calidad, con cuello que no se deforma, pesado y con estilo. Logo bordado en la parte inferior izquierda.",
-          price: 350,
+          price: 300,
           image: gris_oxford_croptop_front,
           images: [gris_oxford_croptop_front, gris_oxford_croptop_side],
         },
