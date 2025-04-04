@@ -193,7 +193,7 @@ export default {
           name: "Playera Arena Oversize 240GSM",
           description:
             "Camisa corte oversize, suave, fresca y de la más alta calidad, con cuello que no se deforma, pesada y con estilo. Logo bordado en la parte inferior izquierda.",
-          price: 300,
+          price: 350,
           image: arena_back,
           images: [arena_back, arena_side],
         },
@@ -201,7 +201,7 @@ export default {
           name: "Playera Café Oversize 240GSM",
           description:
             "Camisa corte oversize, suave, fresca y de la más alta calidad, con cuello que no se deforma, pesada y con estilo. Logo bordado en la parte inferior izquierda.",
-          price: 300,
+          price: 350,
           image: cafe_front,
           images: [cafe_back, cafe_side, cafe_front],
         },
@@ -209,7 +209,7 @@ export default {
           name: "Playera Gris Oxford Oversize 240GSM",
           description:
             "Camisa corte oversize, suave, fresca y de la más alta calidad, con cuello que no se deforma, pesada y con estilo. Logo bordado en la parte inferior izquierda.",
-          price: 300,
+          price: 350,
           image: gris_oxford_front,
           images: [gris_oxford_front, gris_oxford_side],
         },
@@ -217,7 +217,7 @@ export default {
           name: "Crop Top Gris Oxford Oversize 240GSM",
           description:
             "Crop top oversize, suave, fresco y de la más alta calidad, con cuello que no se deforma, pesado y con estilo. Logo bordado en la parte inferior izquierda.",
-          price: 300,
+          price: 350,
           image: gris_oxford_croptop_front,
           images: [gris_oxford_croptop_front, gris_oxford_croptop_side],
         },
@@ -225,7 +225,7 @@ export default {
           name: "Playera Rosa Palo Oversize 240GSM",
           description:
             "Camisa corte oversize, suave, fresca y de la más alta calidad, con cuello que no se deforma, pesada y con estilo. Logo bordado en la parte inferior izquierda.",
-          price: 300,
+          price: 350,
           image: rosa_palo_back,
           images: [rosa_palo_back, rosa_palo_side],
         },

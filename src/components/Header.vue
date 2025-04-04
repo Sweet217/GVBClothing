@@ -65,11 +65,42 @@
         <!-- Cart Icon -->
         <router-link
           to="/cart"
-          class="font-super-funky hover:text-purple-100 flex items-center mr-20"
+          :class="[
+            'font-super-funky hover:text-purple-100 flex items-center mr-20',
+            isScrolled ? 'opacity-0' : 'opacity-100',
+          ]"
         >
           <span class="material-icons">shopping_cart</span>
         </router-link>
       </nav>
+
+      <!-- Social Media Icons -->
+      <div :class="['flex space-x-4', isScrolled ? 'opacity-0' : 'opacity-100']">
+        <a
+          href="https://www.facebook.com/profile.php?id=61574341145991"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-white hover:text-blue-500"
+        >
+          <i class="bi bi-facebook"></i>
+        </a>
+        <a
+          href="https://wa.me/523125953394"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-white hover:text-green-500"
+        >
+          <i class="bi bi-whatsapp"></i>
+        </a>
+        <a
+          href="https://www.instagram.com/gvb_clothing/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-white hover:text-pink-500"
+        >
+          <i class="bi bi-instagram"></i>
+        </a>
+      </div>
     </div>
   </header>
 </template>
