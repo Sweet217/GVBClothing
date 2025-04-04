@@ -26,17 +26,11 @@
         </section>
       </div>
       <!--Slogan -->
-      <div
-        class="ml-1 font-new-rocker text-4xl text-center text-white mb-5"
-        style="box-shadow: none; -webkit-text-stroke: 1.5px rgb(0, 0, 0)"
-      >
+      <div class="ml-1 font-new-rocker text-4xl text-center text-black mb-5">
         <a>GVB Clothing – Estilo, Calidad y Comodidad 100% Mexicana.</a>
       </div>
 
-      <div
-        class="ml-1 font-new-rocker text-2xl text-center text-white ml-20 mr-20 mb-10"
-        style="box-shadow: none; -webkit-text-stroke: 1px rgb(0, 0, 0)"
-      >
+      <div class="ml-1 font-new-rocker text-2xl text-center text-black ml-20 mr-20 mb-10">
         <a
           >GVB Clothing es una marca de ropa 100% mexicana que combina estilo, calidad y
           comodidad en cada prenda. Nos inspiramos en la identidad y creatividad de México
